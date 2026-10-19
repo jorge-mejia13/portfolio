@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jorge Mejia | Web and Application Developer</title>
+<meta name="description" content="Portfolio of Jorge Mejia, a web and application development student building backend projects with Node, Express, and TypeScript.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@700;800&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#eef2f5; --surface:#ffffff; --ink:#14202b; --muted:#4d5f6e; --line:#c8d6de; --accent:#0f6e7a; --accent-ink:#ffffff; --code:#14202b; --code-ink:#dbe8ee; --code-key:#7fd1da; --code-str:#f2c879;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#101a22; --surface:#17232d; --ink:#e8f0f4; --muted:#9db0bd; --line:#2b3b48; --accent:#4cc0cd; --accent-ink:#0b1a20; --code:#0b1218; color-scheme:dark;}
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+h1,h2,h3{font-family:"Barlow Semi Condensed","Arial Narrow",system-ui,sans-serif;font-weight:800;line-height:1.15;margin:0 0 .6em}
+h1{font-size:clamp(2.5rem,7.5vw,4.4rem);letter-spacing:-.01em}
+h2{font-size:clamp(1.9rem,4.5vw,2.6rem)}
+h3{font-size:1.2rem}
+p{margin:0 0 1em;max-width:68ch}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+header.site{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--line)}
+header.site .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:56px;flex-wrap:wrap}
+.brand{font-family:"Barlow Semi Condensed",sans-serif;font-size:1.25rem;font-weight:800;color:var(--ink);text-decoration:none}
+nav ul{list-style:none;display:flex;gap:18px;margin:0;padding:0;flex-wrap:wrap}
+nav a{color:var(--ink);text-decoration:none;font-weight:500;padding:4px 0;border-bottom:2px solid transparent}
+nav a:hover,nav a.active{border-bottom-color:var(--accent)}
+.hero{padding:56px 0 48px}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.lede{font-size:1.2rem;color:var(--muted)}
+.btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.btn{display:inline-block;padding:12px 20px;border-radius:8px;font-weight:500;text-decoration:none;border:2px solid var(--accent)}
+.btn.primary{background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{color:var(--accent)}
+.btn.off{border-color:var(--line);color:var(--muted);cursor:default}
+.resp{background:var(--code);color:var(--code-ink);border-radius:10px;padding:18px 20px;font:400 .92rem/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;overflow-x:auto}
+.resp .bar{color:#8fa5b3;margin-bottom:10px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.resp .ok{color:#8bd69a}
+.resp .k{color:var(--code-key)}.resp .s{color:var(--code-str)}
+.resp pre{margin:0;white-space:pre}
+section{padding:56px 0;border-top:1px solid var(--line)}
+.about{display:grid;grid-template-columns:220px 1fr;gap:36px;align-items:start}
+.photo{width:220px;height:220px;border-radius:12px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font:800 3.2rem "Barlow Semi Condensed",sans-serif;overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover;display:block}
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.group{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px}
+.group h3{margin-bottom:.5em}
+.chips{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.chips li{border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:.95rem}
+.case{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:28px}
+.case dl{margin:0;display:grid;grid-template-columns:170px 1fr;gap:20px 28px}
+.case dt{font-family:"Barlow Semi Condensed",sans-serif;font-weight:800;font-size:1.1rem}
+.case dd{margin:0}
+.case ul{margin:0 0 .6em;padding-left:1.2em}
+.proof{margin-top:24px;padding-top:20px;border-top:1px solid var(--line)}
+.contact ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+footer{padding:28px 0;border-top:1px solid var(--line);color:var(--muted);font-size:.95rem}
+@media (max-width:760px){
+  .hero .wrap,.about{grid-template-columns:1fr}
+  .photo{width:160px;height:160px}
+  .case{padding:20px}
+  .case dl{grid-template-columns:1fr;gap:6px}
+  .case dd{margin-bottom:14px}
+  nav ul{gap:14px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="#top">Jorge Mejia</a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" style="border-top:0">
+    <div class="wrap">
+      <div>
+        <h1>I build the backend that keeps apps running.</h1>
+        <p class="lede">I’m Jorge Mejia, a web and application development student at Ranken Technical College. I write servers, routes, and database code with Node, Express, and TypeScript.</p>
+        <div class="btns">
+          <a class="btn primary" href="#projects">See my Issue Tracker</a>
+          <a class="btn ghost" href="#contact">Get in touch</a>
+        </div>
+      </div>
+      <div class="resp" role="img" aria-label="Sample API response describing Jorge Mejia">
+        <div class="bar"><span>GET /jorge</span><span class="ok">200 OK</span></div>
+<pre>{
+  <span class="k">"role"</span>: <span class="s">"Developer in training"</span>,
+  <span class="k">"school"</span>: <span class="s">"Ranken Technical College"</span>,
+  <span class="k">"focus"</span>: <span class="s">"Backend APIs"</span>,
+  <span class="k">"stack"</span>: [<span class="s">"Node"</span>, <span class="s">"Express"</span>,
+            <span class="s">"TypeScript"</span>],
+  <span class="k">"project"</span>: <span class="s">"Issue Tracker"</span>
+}</pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap about">
+      <div class="photo" id="photo">
+        <img src="headshot.jpg" alt="Headshot of Jorge Mejia" width="220" height="220">
+      </div>
+      <div>
+        <h2>About me</h2>
+        <p>I’m originally from California, and I moved to Missouri when I was nine. Today I’m a student at Ranken Technical College in the Web and Application Development program, where I’m learning to build software from the ground up.</p>
+        <p>Lately I’ve focused on the backend: starting a server, designing routes, writing middleware, and adding, updating, and deleting data in a database. I like that backend work makes me think about what happens behind the screen, such as how data is checked, stored, and returned reliably.</p>
+        <p>My main project right now is an Issue Tracker, an API that helps teams log and manage the problems in their product. Building it has taught me to validate input, structure endpoints so they behave predictably, and deploy a service so other people can use it.</p>
+        <p>I work mostly in JavaScript and TypeScript with Node and Express, and I also have experience with C#, HTML, CSS, and Tailwind CSS. I’m looking for chances to keep growing as a developer and to learn from experienced engineers while contributing real work.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <h2>Skills</h2>
+      <div class="skills">
+        <div class="group"><h3>Languages</h3><ul class="chips"><li>JavaScript</li><li>TypeScript</li><li>C#</li><li>HTML</li><li>CSS</li></ul></div>
+        <div class="group"><h3>Backend</h3><ul class="chips"><li>Node</li><li>Express</li></ul></div>
+        <div class="group"><h3>Frontend</h3><ul class="chips"><li>Tailwind CSS</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <h2>Project: Issue Tracker</h2>
+      <article class="case">
+        <dl>
+          <dt>Problem</dt>
+          <dd>Teams that ship a product need one place to record what’s broken, who is looking at it, and what has been fixed. Without it, problems get lost in chats and emails. The Issue Tracker gives companies a central list they can add to, update, and clean up.</dd>
+
+          <dt>My role</dt>
+          <dd>I built the backend as part of my coursework: starting the server, writing the routes, adding middleware, validating requests, and creating, updating, and deleting records in the database. I also deployed it so it runs on the web.</dd>
+
+          <dt>What I built</dt>
+          <dd>
+            <ul>
+              <li>A REST API with endpoints to create, read, update, and delete issues</li>
+              <li>Request validation with Zod so bad data is rejected early</li>
+              <li>Comments and test cases stored inside each issue</li>
+              <li>Filtering, sorting, search, and pagination for the issue list</li>
+              <li>Hosting on Google Cloud Run</li>
+            </ul>
+            <p>Tech stack: TypeScript, Node, Express, MongoDB Atlas, Zod.</p>
+          </dd>
+
+          <dt>What I’d improve</dt>
+          <dd>I’d set up automatic deployment (CI/CD) so a push to GitHub ships a new version without manual steps. I’d also add a simple front-end so non-developers can use it, plus user accounts and more automated tests.</dd>
+        </dl>
+        <div class="proof">
+          <strong>Proof of work</strong>
+          <div class="btns">
+            <a class="btn primary" href="https://issue-tracker-616638530118.us-central1.run.app/issues" target="_blank" rel="noopener">Open the live API</a>
+            <a class="btn ghost" href="https://github.com/jorge-mejia13" target="_blank" rel="noopener">View code on GitHub</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <h2>Contact</h2>
+      <p>I’m open to internships, entry-level roles, and conversations with other developers.</p>
+      <ul>
+        <li>Email: <a href="mailto:jorge_mejia@insideranken.org">jorge_mejia@insideranken.org</a></li>
+        <li>GitHub: <a href="https://github.com/jorge-mejia13" target="_blank" rel="noopener">github.com/jorge-mejia13</a></li>
+        <li>LinkedIn: coming soon</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© <span id="year">2026</span> Jorge Mejia</div>
+</footer>
+
+<script>
+(function(){
+  document.getElementById('year').textContent = new Date().getFullYear();
+  var img = document.querySelector('#photo img');
+  img.addEventListener('error', function(){
+    img.remove();
+    document.getElementById('photo').textContent = 'JM';
+  });
+  var links = document.querySelectorAll('nav a');
+  var secs = ['about','skills','projects','contact'].map(function(id){return document.getElementById(id);});
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) {
+          links.forEach(function(a){a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id);});
+        }
+      });
+    }, {rootMargin:'-40% 0px -55% 0px'});
+    secs.forEach(function(s){io.observe(s);});
+  }
+})();
+</script>
+</body>
+</html>
